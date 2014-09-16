@@ -10,7 +10,6 @@ $KEYFILELOCATION = "Keys/6f5438f176261b2693a24a3d1ac6ebf401389794-privatekey.p12
 
 // URL to come back to
 session_start();
-unset($_SESSSION);
 // Reference google api php client - this assumes that ../google-api-php-client
 // directory is in the parent directory of this project
 set_include_path("../google-api-php-client/src/" . PATH_SEPARATOR . get_include_path());
@@ -27,11 +26,7 @@ if (isset($_SESSION['service_token'])){
 $key = file_get_contents($KEYFILELOCATION);
 $cred = new Google_Auth_AssertionCredentials(
    $SERVICEACCOUNTNAME,
-   array(
-         'https://www.googleapis.com/auth/drive.metadata.readonly'
-         //'https://docs.google.com/feeds'
-         //'https://www/googleapis.com/auth/drive'
-         ),
+   array('https://www.googleapis.com/auth/drive.metadata.readonly'),
    $key
 );
 $client->setAssertionCredentials($cred);
